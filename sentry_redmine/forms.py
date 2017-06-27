@@ -6,6 +6,10 @@ from django.utils.translation import ugettext_lazy as _
 
 from .client import RedmineClient
 
+FORMAT_OPTIONS = (
+    ('MD', 'Markdown'),
+    ('TT', 'Textile')
+)
 
 class RedmineOptionsForm(forms.Form):
     host = forms.URLField(help_text=_("e.g. http://bugs.redmine.org"))
@@ -18,6 +22,8 @@ class RedmineOptionsForm(forms.Form):
         label='Tracker', coerce=int)
     default_priority = forms.TypedChoiceField(
         label='Default Priority', coerce=int)
+    text_formatting = forms.ChoiceField(
+        label='Text Format', choices=FORMAT_OPTIONS, required=True)
     extra_fields = forms.CharField(
         widget=forms.Textarea(attrs={'rows': 5, 'class': 'span9'}),
         help_text='Extra attributes (custom fields, status id, etc.) in JSON format',

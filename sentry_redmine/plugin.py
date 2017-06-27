@@ -47,9 +47,9 @@ class RedminePlugin(IssuePlugin):
         if body:
             output.extend([
                 '',
-                '<pre>',
+                '```' if self.get_option('text_format', group.project) == 'MD' else '<pre>',
                 body,
-                '</pre>',
+                '```' if self.get_option('text_format', group.project) == 'MD' else '</pre>',
             ])
         return '\n'.join(output)
 
