@@ -22,7 +22,7 @@ class RedmineOptionsForm(forms.Form):
         label='Tracker', coerce=int)
     default_priority = forms.TypedChoiceField(
         label='Default Priority', coerce=int)
-    text_formatting = forms.ChoiceField(
+    text_format = forms.ChoiceField(
         label='Text Format', choices=FORMAT_OPTIONS, required=True)
     extra_fields = forms.CharField(
         widget=forms.Textarea(attrs={'rows': 5, 'class': 'span9'}),

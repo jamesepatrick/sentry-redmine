@@ -13,7 +13,7 @@ from .forms import RedmineOptionsForm, RedmineNewIssueForm
 class RedminePlugin(IssuePlugin):
     author = 'Sentry'
     author_url = 'https://github.com/getsentry/sentry-redmine'
-    version = '0.1.0'
+    version = '0.1.1'
     description = "Integrate Redmine issue tracking by linking a user account to a project."
     resource_links = [
         ('Bug Tracker', 'https://github.com/getsentry/sentry-redmine/issues'),
@@ -47,6 +47,7 @@ class RedminePlugin(IssuePlugin):
         if body:
             output.extend([
                 '',
+                 self.get_option('text_format', group.project),
                 '```' if self.get_option('text_format', group.project) == 'MD' else '<pre>',
                 body,
                 '```' if self.get_option('text_format', group.project) == 'MD' else '</pre>',
@@ -71,6 +72,7 @@ class RedminePlugin(IssuePlugin):
         issue_dict = {
             'project_id': self.get_option('project_id', group.project),
             'tracker_id': self.get_option('tracker_id', group.project),
+            'text_format': self.get_option('text_format', group.project),
             'priority_id': default_priority,
             'subject': form_data['title'].encode('utf-8'),
             'description': form_data['description'].encode('utf-8'),
