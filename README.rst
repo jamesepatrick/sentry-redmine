@@ -10,7 +10,12 @@ Install
 
 Install the package via ``pip``::
 
-    pip install sentry-redmine
+    pip install git+https://github.com/jamesepatrick/sentry-redmine
+
+
+More realistically you will want to be installing this in a docker instance, so rather than running ``pip``
+you can add ``git+https://github.com/jamesepatrick/sentry-redmine`` to your ``requirements.txt``.
+
 
 Configuration
 -------------
